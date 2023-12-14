@@ -41,6 +41,6 @@ typedef struct instruction_s
 } instruction_t;
 
 void push(stack_t **head, unsigned int number);
-void pall(const stack_t *stack);
+void pall(stack_t **head, unsigned int lnumber);
 
 #endif
