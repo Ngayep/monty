@@ -45,6 +45,26 @@ void push(stack_t **head, char *line, unsigned int lnumber)
 	}
 	*head = newstack;
 }
+/**
+* swap - swaps the value of the top two elements to the stack
+* @stack: pointer that point to stack
+* @lnumber: line number of instruction
+* Return: void, exit with -1 on failure
+**/
+void swap(stack_t **stack, unsigned int lnumber)
+{
+	int temp;
+
+	if (len(stack) < 2)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", lnumber);
+		exit(EXIT_FAILURE);
+	}
+	temp = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = temp;
+}
+
 
 /**
  * free_stack - frees a stack
@@ -60,4 +80,23 @@ void free_stack(stack_t *stack)
 		stack = stack->next;
 		free(current);
 	}
+}
+
+/**
+* len - length of stack
+* @stack: pointer that point to stack
+* Return: unsigned int
+**/
+unsigned int len(stack_t **stack)
+{
+	stack_t *current;
+	unsigned int lenght = 0;
+
+	current = *stack;
+	while (current)
+	{
+		current = current->next;
+		lenght++;
+	}
+	return (1);
 }

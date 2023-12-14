@@ -48,6 +48,8 @@ void pint(stack_t **stack, unsigned int lnumber);
 void pall(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int lnumber);
 void pop(stack_t **stack, unsigned int lnumber);
+void swap(stack_t **stack, unsigned int lnumber);
+unsigned int len(stack_t **stack);
 char gettonumber(char *s);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, int n);
