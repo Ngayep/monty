@@ -2,23 +2,22 @@
 
 /**
  * pall - prints all values on the stack
- * @head: first element of stack
+ * @head: double pointer to first element of stack
  * @lnumber: line number
  * opcode: pall
  */
 
 void pall(stack_t **head, unsigned int lnumber)
 {
-	stack_t *h;
+	stack_t *current = *head;
 	(void) lnumber;
 
 	if (!head)
 		return;
-	h = *head;
 
-	while (h != NULL)
+	while (current != NULL)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
+		printf("%d\n", current->n);
+		current = current->next;
 	}
 }
