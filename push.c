@@ -46,6 +46,10 @@ void push(stack_t **head, char *line, unsigned int lnumber)
 	*head = newstack;
 }
 
+/**
+ * free_stack - frees a stack
+ * @stack: stack to be freed
+ */
 void free_stack(stack_t *stack)
 {
 	stack_t *current;

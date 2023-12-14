@@ -44,6 +44,8 @@ void push(stack_t **head, char *line, unsigned int lnumber);
 void pall(stack_t **head, unsigned int lnumber);
 
 void free_stack(stack_t *stack);
+void pint(stack_t **stack, unsigned int lnumber);
+void pall(stack_t **stack, unsigned int line_number);
 char gettonumber(char *s);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, int n);

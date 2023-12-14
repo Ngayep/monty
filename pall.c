@@ -12,7 +12,7 @@ void pall(stack_t **head, unsigned int lnumber)
 	stack_t *current = *head;
 	(void) lnumber;
 
-	if (!head)
+	if (head == NULL || *head == NULL)
 		return;
 
 	while (current != NULL)
@@ -20,4 +20,24 @@ void pall(stack_t **head, unsigned int lnumber)
 		printf("%d\n", current->n);
 		current = current->next;
 	}
+}
+
+/**
+ * pint - print the int at the top of stack
+ *
+ * @stack: double pointer th the head
+ * @lnumber: number of lines
+ * Return: void
+*/
+
+void pint(stack_t **stack, unsigned int lnumber)
+{
+	(void) lnumber;
+
+	if (stack == NULL || *stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", lnumber);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
 }
