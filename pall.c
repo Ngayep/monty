@@ -9,14 +9,16 @@
 
 void pall(stack_t **head, unsigned int lnumber)
 {
+	stack_t *h;
 	(void) lnumber;
 
 	if (!head)
 		return;
+	h = *head;
 
-	while (*head != NULL)
+	while (h != NULL)
 	{
-		printf("%d\n", *head->n);
-		*head = *head->next;
+		printf("%d\n", h->n);
+		h = h->next;
 	}
 }
