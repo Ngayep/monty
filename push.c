@@ -1,13 +1,15 @@
 #include "monty.h"
 /**
- * _push - add node to the stack
+ * push - add node to the stack
  * @head: stack head
  * @number: stackline number
  * Return: no return
  */
 
-void _push(stack_t **head, unsigned int number)
+void push(stack_t **stack, unsigned int number)
 {
+	stack_t *newNode = malloc(sizeof(stack_t));
+
 	if (!newNode)
 	{
 		perror("Memory allocation failed");

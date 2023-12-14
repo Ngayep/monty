@@ -40,24 +40,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct bus_s - variables -args, file, line content
- * @arg: value
- * @file: pointer to monty file
- * @cont: line content
- * @lifo: flag change stack <-> queue
- * Description: carries values through the program
- */
-typedef struct traverse_s
-{
-	char *arg;
-	FILE *file;
-	char *cont;
-	int lifo;
-}  traverse_t;
-
-extern bus_t bus;
-void _push(stack_t **head, unsigned int number);
-void _pall(const stack_t *stack);
+void push(stack_t **head, unsigned int number);
+void pall(const stack_t *stack);
 
 #endif

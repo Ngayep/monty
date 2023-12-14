@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
- * _pall - prints all values on the stack
+ * pall - prints all values on the stack
  * @stack: stack to be printed
  */
 
-void _pall(const stack_t *stack)
+void pall(const stack_t *stack)
 {
 	while (stack != NULL)
 	{
