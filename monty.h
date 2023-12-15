@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdarg.h>
+#include <errno.h>
 
 
 /**
@@ -40,18 +41,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void push(stack_t **head, char *line, unsigned int lnumber);
-void pall(stack_t **head, unsigned int lnumber);
-
-void free_stack(stack_t *stack);
-void pint(stack_t **stack, unsigned int lnumber);
+void push(stack_t **stack, unsigned int line_number);
+void (*get_func(char **parsed))(stack_t **, unsigned int);
+void pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int lnumber);
 void pop(stack_t **stack, unsigned int lnumber);
 void swap(stack_t **stack, unsigned int lnumber);
-unsigned int len(stack_t **stack);
-char gettonumber(char *s);
-int _strcmp(char *s1, char *s2);
-int _strncmp(char *s1, char *s2, int n);
 
 #endif

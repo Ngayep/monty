@@ -41,49 +41,44 @@ char gettonumber(char *s)
 	return (*s);
 }
 
-
 /**
- * _strcmp - compare 2 strings see strcmp()
- * @s1: string to compare
- * @s2: string used as reference
- * Return: It returns the difference in value of the first characters where
- * s1 and s2 disagree
-*/
-int _strcmp(char *s1, char *s2)
+ * get_func - selects the right function
+ * @parsed: line from the bytecode file passed to main
+ *
+ * Return: pointer to the selected function, or NULL on failure
+ */
+void (*get_func(char **parsed))(stack_t **, unsigned int)
 {
-	int i;
+	instruction_t funct_arr[] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		/**{"swap", swap},
+		*{"add", add},
+		*{"nop", nop},
+		*{"sub", sub},
+		*{"div", div},
+		*{"mul", mul},
+		*{"mod", mod},
+		*{"pchar", pchar},
+		*{"pstr", pstr},
+		*{"rotl", rotl},
+		*{"rotr", rotr},
+		*{"stack", stack},
+		*{"queue", queue},
+		*/
+		{NULL, NULL}
+	};
 
-	i = 0;
-	while (*(s1 + i) == *(s2 + i) && *(s1 + i) != '\0' && *(s2 + i) != '\0')
-		i++;
-	return (*(s1 + i) - *(s2 + i));
-}
+	int code = 17, i;
 
-/**
- * _strncmp - compare 2 strings see strcmp()
- * @s1: string to compare
- * @s2: opcode
- * @n: length of opcode to compare
- * Return: It returns 0 if OK
-*/
-int _strncmp(char *s1, char *s2, int n)
-{
-	int i;
-
-	i = 0;
-	while (*(s1 + i) != '\0' && *(s2 + i) != '\0' && i < n)
+	for (i = 0; i < code; i++)
 	{
-		if (*(s1 + i) == *(s2 + i))
+		if (strcmp(funct_arr[i].opcode, parsed[0]) == 0)
 		{
-			++i;
-		}
-		else
-		{
-			return (*(s1 + i) - *(s2 + i));
+			return (funct_arr[i].f);
 		}
 	}
-	if (i == n && (*(s1 + i) == ' ' || *(s1 + i) == '\t' ||
-		       *(s1 + i) == '\0' || *(s1 + i) == '\n'))
-		return (0);
-	return (EXIT_FAILURE); /* one of the strings was too short, not the best*/
+	return (NULL);
 }
