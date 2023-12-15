@@ -49,4 +49,12 @@ void nop(stack_t **stack, unsigned int lnumber);
 void pop(stack_t **stack, unsigned int lnumber);
 void swap(stack_t **stack, unsigned int lnumber);
 
+
+void free_all(int allz);
+dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index);
+int delete_dnodeint_at_index(dlistint_t **head, unsigned int index);
+size_t print_dlistint(const dlistint_t *h);
+dlistint_t *add_dnodeint(dlistint_t **head, const int n);
+size_t dlistint_len(const dlistint_t *h);
+
 #endif

@@ -8,56 +8,47 @@
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	char *argument = strtok(NULL, " ");
-	long int value;
-	stack_t *head = malloc(sizeof(stack_t));
+	stack_t *newstack;
 
-	if (!argument)
+	if (data.words[1] == NULL)
 	{
-		fprintf(stderr, "L%u: Missing argument for 'push'\n", line_number);
+		dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+		free_all(1);
 		exit(EXIT_FAILURE);
 	}
-
-	value = atoi(argument);
-	if (value == 0 && errno == EINVAL)
+	for (i = 0; data.words[1][i]; i++)
 	{
-		fprintf(stderr, "L%u: Invalid argument '%s'\n", line_number, argument);
+		if (isalpha(data.words[1][i]) != 0)
+		{
+			dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+			free_all(1);
+			exit(EXIT_FAILURE);
+		}
+	}
+	num = atoi(data.words[1]);
+
+	if (data.qflag == 0)
+		newstack = add_dnodeint(stack, num);
+	else if (data.qflag == 1)
+		newstack = add_dnodeint_end(stack, num);
+	if (!newstack)
+	{
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
 		exit(EXIT_FAILURE);
 	}
-
-	if (!head)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
-	head->n = value;
-	head->prev = NULL;
-	head->next = *stack;
-
-	*stack = head;
 }
 
 /**
  * pall - prints all elements in stack
- * @stack: pointeer to the head of the stack
+ * @stack: double pointer to the head of the stack
+ * @line_number: number of the line in the file
  * Return: nothing
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *head = *stack;
-
 	(void)line_number;
-	if (!stack)
-		return;
-	while (head)
-	{
-		printf("%d", head->n);
-		if (head->next)
-		{
-			printf(" ");
-		}
-		head = head->next;
-	}
-	printf("\n");
+
+	if (*stack)
+		print_dlistint(*stack);
 }

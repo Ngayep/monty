@@ -1,46 +1,3 @@
-#include "monty.h"
-
-/**
- * gettonumber - get the first number in a string
- * @s:
- * the string should contain only spaces and a valid opcode before
- * Return: a pointer to where the number (and a number is not 4e) is or NULL
- */
-char gettonumber(char *s)
-{
-	char *c;
-	int res, i, neg = 1;
-
-	res = i = 0;
-	if (!s)
-		return (0);
-
-	while (*s && (*s < '0' || *s > '9'))
-	{
-		if (*s == '-')
-			neg = -1;
-		i++;
-		++s;
-	}
-
-	if (*s == '\0')
-		return (0);
-	c = s;
-	while (*c && *c >= '0' && *c <= '9')
-		c++;
-
-	if (!(*c == '\0' || *c == '\n' || *c == ' ' || *c == '\t'))
-	return (0);
-
-	res = atoi(s) * neg;
-	if (res < 0)
-	{
-		s[i - 1] = '-';
-		return ((*s) - 1);
-	}
-	return (*s);
-}
-
 /**
  * get_func - selects the right function
  * @parsed: line from the bytecode file passed to main
@@ -81,4 +38,33 @@ void (*get_func(char **parsed))(stack_t **, unsigned int)
 		}
 	}
 	return (NULL);
+}
+
+/**
+ * free_all - memory freeing function
+ * @allz: indicates what to free
+ */
+void free_all(int allz)
+{
+	if (data.line)
+	{
+		free(data.line);
+		data.line = NULL;
+		free_everything(data.words);
+		data.words = NULL;
+	}
+
+	if (allz)
+	{
+		if (data.stack)
+		{
+			free_dlistint(data.stack);
+			data.stack = NULL;
+		}
+		if (data.fptr)
+		{
+			fclose(data.fptr);
+			data.fptr = NULL;
+		}
+	}
 }
