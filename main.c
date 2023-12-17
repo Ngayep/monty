@@ -1,5 +1,7 @@
 #include "monty.h"
 
+data_t data = DATA_INIT;
+
 /**
  * monty - helper function for main function
  * @args: pointer to struct of arguments from main

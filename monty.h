@@ -105,8 +105,8 @@ void pop(stack_t **stack, unsigned int lnumber);
 void swap(stack_t **stack, unsigned int lnumber);
 void queue(stack_t **stack, unsigned int line_number);
 void stack_handle(stack_t **stack, unsigned int line_number);
-void pstr_handler(stack_t **stack, unsigned int line_number);
-void pchar_handler(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
 
 void free_dlistint(dlistint_t *head);
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n);
