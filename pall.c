@@ -23,41 +23,33 @@ void pint(stack_t **stack, unsigned int lnumber)
 /**
  * pop - removes the last inserted element
  *
- * @lnumber: number of lines in stack
- * @stack: pointer to the pointer to the head
+ * @line_number: number of lines in stack
+ * @stack: pointer to the pointer to the head of the stack
  * Return: void
  */
 
-void pop(stack_t **stack, unsigned int lnumber)
+void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *last;
+	stack_t *tmp = *stack;
 
-	if (stack == NULL)
+	if (!tmp)
 	{
-		printf("L%u: can't pop an empty stack\n", lnumber);
+		dprintf(STDERR_FILENO, POP_FAIL, line_number);
+		free_all(1);
 		exit(EXIT_FAILURE);
 	}
-	else if (*stack == NULL)
-	{
-		printf("L%u: can't pop an empty stack\n", lnumber);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		last = *stack;
-		*stack = (*stack)->next;
-		free(last);
-	}
+
+	delete_dnodeint_at_index(stack, 0);
 }
 
 /**
  * nop - does nothing
  * @stack: pointer to pointer to the stack
- * @lnumber: number of lines in the stack
+ * @line_number: number of lines in the stack
  * Return: void
  */
 
-void nop(stack_t **stack, unsigned int lnumber)
+void nop(stack_t **stack, unsigned int line_number)
 {
 	(void) stack;
 	(void) lnumber;

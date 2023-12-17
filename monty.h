@@ -94,7 +94,7 @@ extern data_t data;
 #define PCHAR_FAIL "L%u: can't pchar, stack empty\n"
 #define PCHAR_RANGE "L%u: can't pchar, value out of range\n"
 
-void main(args_t *args);
+void monty(args_t *args);
 
 void push(stack_t **stack, unsigned int line_number);
 void (*get_func(char **parsed))(stack_t **, unsigned int);
@@ -105,7 +105,8 @@ void pop(stack_t **stack, unsigned int lnumber);
 void swap(stack_t **stack, unsigned int lnumber);
 void queue(stack_t **stack, unsigned int line_number);
 void stack_handle(stack_t **stack, unsigned int line_number);
-
+void pstr_handler(stack_t **stack, unsigned int line_number);
+void pchar_handler(stack_t **stack, unsigned int line_number);
 
 void free_dlistint(dlistint_t *head);
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n);
