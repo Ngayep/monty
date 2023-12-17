@@ -9,6 +9,7 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *newstack;
+	int num = 0, i;
 
 	if (data.words[1] == NULL)
 	{
