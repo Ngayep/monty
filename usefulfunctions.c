@@ -15,20 +15,18 @@ void (*get_func(char **parsed))(stack_t **, unsigned int)
 		{"pop", pop},
 		{"stack", stack_handle},
 		{"queue", queue},
+		{"nop", nop},
+		{"pchar", pchar},
 		/**
 		*{"swap", swap},
 		*{"add", add},
-		*{"nop", nop},
 		*{"sub", sub},
 		*{"div", div},
 		*{"mul", mul},
 		*{"mod", mod},
-		*{"pchar", pchar},
 		*{"pstr", pstr},
 		*{"rotl", rotl},
 		*{"rotr", rotr},
-		*{"stack", stack},
-		*{"queue", queue},
 		*/
 		{NULL, NULL}
 	};
